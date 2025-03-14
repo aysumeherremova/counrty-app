@@ -188,6 +188,36 @@ a{ color: #000; }
 
 
 @media only screen and (min-width: 768px) {
+    .boxs{flex-direction:row;}
+    .navbar{
+        gap: 45px;
+        justify-content: center;
+    }
+    .nav-left, .nav-right, .moon,.nav-left ul, .nav-right ul {
+        display: flex;
+        flex-direction: row;
+    }
+    .nav-left ul, .nav-right ul{
+        gap: 45px;
+        letter-spacing: 0.7px;
+        font-size: 15px;
+        font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    }
+    .moon{
+        position: absolute;
+        right: 5%;
+        cursor: pointer;
+    }
+    .moon svg:hover, .navbar ul li :hover{
+        color: #6366F1;
+    }
+    .bars{
+        display: none !important;
+    }
+    .content-top{
+        font-size: 3em;
+    }
     .btn{
         flex-direction: row;
         justify-content: center;
@@ -208,4 +238,10 @@ a{ color: #000; }
     .card-img{
         width: 500px;
     }
+    .footer{
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100px;
+    }
+    hr{display: none;}
 }
