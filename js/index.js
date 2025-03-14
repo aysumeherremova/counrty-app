@@ -1,48 +1,45 @@
-const DATA = []
+const DATA = [];
 const content = document.getElementById("content");
 const inputt = document.querySelector(".input");
 
-
 fetch("https://restcountries.com/v3.1/all")
-    .then(res => res.json())
-    .then(melumat => {
-        DATA.push(...melumat)
-        show()
-    
-    })
-let count = 8
+  .then(res => res.json())
+  .then(melumat => {
+    DATA.push(...melumat);
+    show();
+  });
 
-function show(){
-    content.innerText = ""
-    DATA.slice(0,count).forEach(    item => {
-        content.innerHTML += `
-             <article class="flex flex-col dark:bg-gray-50">
-                <a rel="noopener noreferrer" href="#" aria-label="Te nulla oportere reprimique his dolorum">
-                    <img alt="" class="object-cover w-100 h-52 dark:bg-gray-500"
-                    src="${item.flags.svg}">
-                </a>
-                <div class="flex flex-col flex-1 p-6">
-                    <a rel="noopener noreferrer" href="#"
-                        aria-label="Te nulla oportere reprimique his dolorum"></a>
-                    <a rel="noopener noreferrer" href="#"
-                        class="text-xs tracking-wider uppercase hover:underline dark:text-violet-600">"${item.name.common}"</a>
-                      <div class="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-600">
-                        <span>"${item.capital}"</span>
-                    </div>
-                    <h3 class="flex-1 py-2 text-lg font-semibold leading-snug">Te nulla oportere reprimique his
-                        dolorum</h3>
-                </div>
-            </article>
-        `
-    }     )
+let count = 8;
+
+function show() {
+  content.innerHTML = "";
+  DATA.slice(0, count).forEach(item => {
+    content.innerHTML += `
+      <article class="flex flex-col dark:bg-gray-50">
+        <a href="#" data-country='${JSON.stringify(item)}' onclick="showDetails(event)">
+          <img alt="${item.name.common}" class="object-cover w-full h-52 dark:bg-gray-500" src="${item.flags.svg}">
+        </a>
+        <div class="flex flex-col flex-1 p-6">
+          <a class="text-xs tracking-wider uppercase hover:underline dark:text-violet-600">${item.name.common}</a>
+          <div class="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-600">
+            <span>${item.capital}</span>
+          </div>
+        </div>
+      </article>
+    `;
+  });
 }
 
-
-function elaveEt(){
-    count += 8
-    show()
+function showDetails(event) {
+  const item = JSON.parse(event.target.getAttribute('data-country'));
+  let countryName = encodeURIComponent(item.name.common);
+  window.location.href = `details.html?country=${countryName}`;
 }
 
+function elaveEt() {
+  count += 8;
+  show();
+}
 
 const hiddenbars = document.querySelector(".hiddenbars");
 const xmark = document.querySelector(".fa-xmark");
@@ -63,6 +60,7 @@ function darkMode() {
 }
 
 let flag = false;
+
 function OpenBars() {
   if (flag == false) {
     hiddenbars.style.display = "block";
@@ -88,9 +86,7 @@ function Inputla() {
 
 let data;
 
-fetch(
-  "https://raw.githubusercontent.com/TheOksigen/purfect_data/main/country.json"
-)
+fetch("https://raw.githubusercontent.com/TheOksigen/purfect_data/main/country.json")
   .then((res) => res.json())
   .then((resJson) => {
     data = resJson;
@@ -103,41 +99,35 @@ function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 function randomla() {
-    let obj = data[rand(0, 249)];
-    let neighbors = obj.borders ? obj.borders.map(code => `<span class="neighbor">${code}</span>`).join(" ") : "Yoxdur";
+  let obj = data[rand(0, 249)];
+  let neighbors = obj.borders ? obj.borders.map(code => `<span class="neighbor">${code}</span>`).join(" ") : "Yoxdur";
 
-    let content = `
-        <div class="rand-card">
-            <div class="card-img w-100 h-50">
-                <img src="${obj.flags.png}" alt="${obj.name}">
-            </div>
-            <div class="card-text">
-                <h1>${obj.name}</h1>
-                <p>Paytaxt: ${obj.capital}</p>
-                <p>Yerleşdiyi qitə: ${obj.region}</p>
-                <p>${obj.name}-in əhalisi: ${obj.population}</p>
-                <p>Onun qonşuları:</p>
-                <div class="neighbors">${neighbors}</div>
-            </div>
-        </div>
-    `;
+  let content = `
+    <div class="rand-card">
+      <div class="card-img w-100 h-50">
+        <img src="${obj.flags.png}" alt="${obj.name}">
+      </div>
+      <div class="card-text">
+        <h1>${obj.name}</h1>
+        <p>Paytaxt: ${obj.capital}</p>
+        <p>Yerleşdiyi qitə: ${obj.region}</p>
+        <p>${obj.name}-in əhalisi: ${obj.population}</p>
+        <p>Onun qonşuları:</p>
+        <div class="neighbors">${neighbors}</div>
+      </div>
+    </div>
+  `;
 
-    randomelem.innerHTML = content;
+  randomelem.innerHTML = content;
 }
 
-function showDetails(item) {
-    let countryName = encodeURIComponent(item.name.common); 
-    window.location.href = `details.html?country=${countryName}`;
-}
-
-function show(){
+function show() {
     content.innerHTML = "";
     DATA.slice(0, count).forEach(item => {
         content.innerHTML += `
             <article class="flex flex-col dark:bg-gray-50">
-                <a href="#" onclick="showDetails(${JSON.stringify(item)})">
+                <a href="details.html?country=${encodeURIComponent(item.name.common)}" >
                     <img alt="${item.name.common}" class="object-cover w-full h-52 dark:bg-gray-500" src="${item.flags.svg}">
                 </a>
                 <div class="flex flex-col flex-1 p-6">
