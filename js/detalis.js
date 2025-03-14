@@ -25,7 +25,7 @@
                   <p><strong>Region:</strong> ${countryData.region}</p>
                   <p><strong>Ərazi:</strong> ${countryData.area} km<sup>2</sup></p>
                   <p><strong>Əhali:</strong> ${countryData.population}</p>
-                  <p><strong>Qonşular:</strong> ${countryData.borders ? countryData.borders.join(", ") : "Yoxdur"}</p>
+   21               <p><strong>Qonşular:</strong> ${countryData.borders ? countryData.borders.join(", ") : "Yoxdur"}</p>
               </div>
           </div>
       `;

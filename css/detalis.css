@@ -1,4 +1,4 @@
-/* Ümumi üslublar */
+
 * {
     margin: 0;
     padding: 0;
@@ -72,8 +72,6 @@ strong {
     font-weight: bold;
     color: #444;
 }
-
-/* Responsive dizayn */
 @media (max-width: 768px) {
     .country-card {
         flex-direction: column;
