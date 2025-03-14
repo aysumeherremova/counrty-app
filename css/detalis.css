@@ -13,14 +13,9 @@ body {
     font-size: 16px;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
 
-header button {
+
+.geri button {
     background-color: #444;
     color: white;
     border: none;
@@ -31,11 +26,11 @@ header button {
     transition: background-color 0.3s ease;
 }
 
-header button:hover {
+.geri button:hover {
     background-color: #555;
 }
 
-/* Ölkə kartı */
+
 .country-card {
     background-color: white;
     display: flex;
